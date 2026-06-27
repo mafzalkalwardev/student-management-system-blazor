@@ -1,0 +1,29 @@
+﻿@page "/"
+@using studentmanagementsystem.Models
+@rendermode InteractiveServer
+
+
+<form onsubmit="handlesubmit()">
+    <div class="container">
+        <center> <h3 style="color:greenyellow">Login Form</h3></center>
+        <label class="form-label">
+            Username:
+        </label>
+        <input type="email" placeholder="Enter Your Email here" class="form-control" @bind.username required/>
+        <label class="form-label">
+            Password:
+        </label>
+        <input type="password" placeholder="Enter Your Password here" class="form-control" @bind.password required/> <br /> <br /><br />
+
+        <a href="/home" style="color:brown; border:none;"> <button class="bg-primary" style="color:oldlace; border:none padding: 4px 2px 2px 2px; color:wheat; border-radius:20%"> Login </button></a>
+    
+        <a href="/register"> Login Here</a>
+    </div>
+</form>
+
+@code {
+    List<user> user = new()
+    {
+        new user { username = "Admin@gmail.com", password = "12345",}
+    };
+}

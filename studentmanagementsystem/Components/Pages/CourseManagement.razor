@@ -1,0 +1,84 @@
+﻿@page "/coursemanagement"
+@using studentmanagementsystem.Models
+@rendermode InteractiveServer
+
+<h2 class="dashboard-title mb-4 text-centerv" style="color:blue">
+    <center> Course Management Dashboard</center>
+</h2>
+
+<!-- SUMMARY SECTION -->
+<div class="row mb-5">
+    <div class="col-md-6 mb-3">
+        <div class="card summary-card bg-black text-center">
+            <div class="card-body">
+                <h6 class="text-white">Total Courses</h6>
+                <h2 class="text-primary">@Courses.Count</h2>
+            </div>
+        </div>
+    </div>
+
+       <div class="col-md-6 mb-3">
+        <div class="card summary-card bg-light  green text-center">
+            <div class="card-body">
+                <h6 class="text-muted">Course Categories</h6>
+                <h2 class="text-success">
+                    @Courses.Select(e => e.CourseTitle).Distinct().Count()
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COURSES LIST -->
+<div class="row">
+    @foreach (var course in Courses)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card-body bg-lightgreen ">
+                <h5 class="card-title">
+                    @course.CourseTitle
+                </h5>
+
+                <p class="mb-2">
+                    <strong>Course ID:</strong> @course.CourseID
+                </p>
+
+                <p class="mb-2">
+                    <strong>Instructor:</strong> @course.Instructor
+                </p>
+
+                <p class="mb-2">
+                    <strong>Department:</strong> @course.Department
+                </p>
+
+                <p class="mb-2">
+                    <strong>Course Duration:</strong> @course.Duration
+                </p>
+
+                <p>
+                    <strong>Course Fee:</strong>
+                    <span class="fw-bold">Rs. @course.Fee</span>
+                </p>
+
+                <p>
+                    <strong>Course Status:</strong>
+                    <span class="fw-bold"> @course.Status</span>
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+<a href="/" style="color:white; border:none;"> <button class="bg-danger" style="color:none; border:none padding: 2px 2px 2px 2px; color:white; border-radius:20%"> Logout </button></a>
+
+@code {
+    List<Courses> Courses = new()
+    {
+        new Courses { CourseID = 1, CourseTitle = "Web Development", Instructor = "Ali Khan", Department = "CS", Duration = "3 MONTHS", Fee = 25000, Status = "Open"  },
+        new Courses { CourseID = 2, CourseTitle = "Data Structures", Instructor = "Sara Ahmed", Department = "CS", Duration = "4 MONTHS", Fee = 30000, Status = "Open"  },
+        new Courses { CourseID = 3, CourseTitle = "Cyber Security", Instructor = "Usman Raza", Department = "IT", Duration = "2 MONTHS", Fee = 20000, Status = "Closed"  },
+        new Courses { CourseID = 4, CourseTitle = "Mobile App Dev", Instructor = "Ayesha Noor", Department = "SE", Duration = "3 MONTHS", Fee = 28000, Status = "Upcoming"  },
+        new Courses { CourseID = 5, CourseTitle = "AI Fundamentals", Instructor = "Dr. Kamran", Department = "CS", Duration = "4 MONTHS", Fee = 35000, Status = "Open"  }
+    };
+}
